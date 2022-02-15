@@ -7,7 +7,11 @@ use Livewire\Component;
 
 class ShowTweets extends Component
 {
-    public $message = 'Apenas um teste';
+    public $content = 'Apenas um teste';
+
+    protected $rules =[
+        'content' => 'required|min:3|max:255'
+    ];
     
     public function render()
     {
@@ -18,6 +22,8 @@ class ShowTweets extends Component
 
     public function create()
     {
+        $this->validate();
+        
         Tweet::create([
             'content' => $this->message,
             'user_id' => 1,
